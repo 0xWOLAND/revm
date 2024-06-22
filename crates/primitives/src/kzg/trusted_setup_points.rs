@@ -1,5 +1,10 @@
-use alloc::boxed::Box;
+#[cfg(feature = "c-kzg")]
 pub use c_kzg::{BYTES_PER_G1_POINT, BYTES_PER_G2_POINT};
+
+#[cfg(not(feature = "c-kzg"))]
+pub use kzg_rs::{BYTES_PER_G1_POINT, BYTES_PER_G2_POINT};
+
+use alloc::boxed::Box;
 use core::fmt::Display;
 use derive_more::{AsMut, AsRef, Deref, DerefMut};
 

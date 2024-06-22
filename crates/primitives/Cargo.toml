@@ -27,6 +27,10 @@ bitflags = { version = "2.4.2", default-features = false }
 
 # For setting the CfgEnv KZGSettings. Enabled by c-kzg flag.
 c-kzg = { version = "1.0.0", default-features = false, optional = true }
+# Optionally use `kzg-rs` for a pure Rust implementation of KZG.
+kzg-rs = { git = "https://github.com/0xWOLAND/kzg-rs", default-features = false, features = [
+    'cache',
+], optional = true }
 once_cell = { version = "1.19", default-features = false, optional = true }
 # TODO: make specific feature for this in c-kzg-4844
 blst = { version = "0.3.11", default-features = false, optional = true }
@@ -87,4 +91,11 @@ optional_beneficiary_reward = []
 
 # See comments in `revm-precompile`
 # TODO: remove `blst` dep when `c-kzg` has a portable feature
-c-kzg = ["dep:c-kzg", "dep:once_cell", "dep:derive_more", "dep:blst", "blst?/portable"]
+c-kzg = [
+    "dep:c-kzg",
+    "dep:once_cell",
+    "dep:derive_more",
+    "dep:blst",
+    "blst?/portable",
+]
+kzg-rs = ["dep:kzg-rs", "dep:once_cell", "dep:derive_more"]

@@ -8,6 +8,10 @@ use once_cell::race::OnceBox;
 
 /// KZG Settings that allow us to specify a custom trusted setup.
 /// or use hardcoded default settings.
+/// #[cfg(feature = "kzg-rs")]
+pub use kzg_rs::EnvKzgSettings;
+
+#[cfg(not(feature = "kzg-rs"))]
 #[derive(Debug, Clone, Default, Eq)]
 pub enum EnvKzgSettings {
     /// Default mainnet trusted setup
